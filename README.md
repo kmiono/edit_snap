@@ -1,16 +1,8 @@
 # edit_snap
 
-A new Flutter project.
+学習用プロジェクト  
+[Flutter実践開発 | 技術評論社](https://gihyo.jp/book/2024/978-4-297-13993-3)6章のハンズオン
 
-## Getting Started
+## 内容
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+画像編集アプリ開発ハンズオン

@@ -1,3 +1,4 @@
+import 'package:edit_snap/image_select_screen.dart';
 import 'package:edit_snap/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,16 @@ class StartScreen extends StatelessWidget {
               l10n.helloWorldOn(DateTime.now()),
               textAlign: TextAlign.center,
             ),
-            ElevatedButton(child: Text(l10n.start), onPressed: () {}),
+            ElevatedButton(
+              child: Text(l10n.start),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ImageSelectScreen(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

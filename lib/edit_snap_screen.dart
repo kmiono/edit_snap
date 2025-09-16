@@ -1,6 +1,7 @@
 import 'package:edit_snap/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:edit_snap/gen/assets.gen.dart';
 
 class ImageEditScreen extends StatefulWidget {
   const ImageEditScreen({super.key, required this.imageBitmap});
@@ -29,8 +30,14 @@ class _ImageEditScreenState extends State<ImageEditScreen> {
             IconButton
             アイコンを表示するボタン
             */
-            IconButton(onPressed: () {}, icon: const Icon(Icons.rotate_left)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.flip)),
+            IconButton(
+              onPressed: () {},
+              icon: Assets.rotateIcon.svg(width: 24, height: 24),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Assets.flipIcon.svg(width: 24, height: 24),
+            ),
           ],
         ),
       ),

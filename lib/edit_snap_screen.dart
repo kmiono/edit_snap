@@ -2,6 +2,7 @@ import 'package:edit_snap/l10n/app_localizations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:edit_snap/gen/assets.gen.dart';
+import 'package:image/image.dart' as image_lib;
 
 class ImageEditScreen extends StatefulWidget {
   const ImageEditScreen({super.key, required this.imageBitmap});
@@ -13,6 +14,40 @@ class ImageEditScreen extends StatefulWidget {
 }
 
 class _ImageEditScreenState extends State<ImageEditScreen> {
+  late Uint8List _imageBitmap;
+
+  @override
+  void initState() {
+    super.initState();
+    _imageBitmap = widget.imageBitmap;
+  }
+
+  void _rotateImage() {
+    // 画像データをデコードする
+    final image = image_lib.decodeImage(_imageBitmap);
+    if (image == null) return;
+    // 画像を時計周りに90度回転する
+    final rotateImage = image_lib.copyRotate(image, angle: 90);
+    // 画像をエンコードして状態を更新する
+    setState(() {
+      _imageBitmap = image_lib.encodeBmp(rotateImage);
+    });
+  }
+
+  void _flipImage() {
+    final image = image_lib.decodeImage(_imageBitmap);
+    if (image == null) return;
+    // 画像を水平方向に反転する
+    final flipImage = image_lib.copyFlip(
+      image,
+      direction: image_lib.FlipDirection.horizontal,
+    );
+    // 画像をエンコードして状態を更新する
+    setState(() {
+      _imageBitmap = image_lib.encodeBmp(flipImage);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -25,17 +60,17 @@ class _ImageEditScreenState extends State<ImageEditScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.memory(widget.imageBitmap),
+            Image.memory(_imageBitmap),
             /*
             IconButton
             アイコンを表示するボタン
             */
             IconButton(
-              onPressed: () {},
+              onPressed: () => _rotateImage(),
               icon: Assets.rotateIcon.svg(width: 24, height: 24),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => _flipImage(),
               icon: Assets.flipIcon.svg(width: 24, height: 24),
             ),
           ],
